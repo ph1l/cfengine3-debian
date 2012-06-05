@@ -1,0 +1,48 @@
+There are some tweaks which were applied to the standard cfengine3 installation
+and you should be aware of them:
+
+*) cfengine3 is FHS, that means that, unlike the original, we log in /var/log,
+the binaries are located in /usr/sbin; for upstream compatibility we have the
+following symlink:         /usr/sbin      -> /var/lib/cfengine3/bin§
+
+*) By default we are not starting any daemon. To enable the daemons you need
+to modify /etc/default/cfengine3 and set the proper variables;
+
+***** TO CONFIGURE AS A POLICY SERVER ( HUB ) *****
+
+      - Copy a baseline policy:
+
+	# cp /usr/share/doc/cfengine3/examples/masterfiles/* \
+		/var/cfengine/masterfiles/
+
+      - Bootstrap the system by pointing it at a non-loopback local address:
+
+	# cf-agent --bootstrap --policy-server <LOCAL_IP_ADDRESS>
+
+      - Run the agent manually:
+
+	# cf-agent -If failsafe.cf && cf-agent -I
+	R: --> I'm a policy hub.
+
+      - Optionally enable the server, monitor and exec daemons in
+	/etc/default/cfengine3 and run /etc/init.d/cfengine3 restart.
+
+***** TO CONFIGURE AS CLIENT *****
+
+      - bootstrap the client:
+
+	# cf-agent --bootstrap --policy-server <POLICY_SERVER_IP_ADDRESS>
+
+      - Run the agent manually:
+
+	# cf-agent -If failsafe.cf && cf-agent -I
+	R: --> <POLICY_SERVER_IP_ADDRESS> is my policy hub.
+	R: --> CFE is running on <FQDN>
+
+      - Optionally enable the server, monitor and exec daemons in
+	/etc/default/cfengine3 and run /etc/init.d/cfengine3 restart.
+
+
+*) For more info you should have a look at the reference manual and the relevant
+docs:
+http://www.cfengine.org/manuals/cf3-reference.html

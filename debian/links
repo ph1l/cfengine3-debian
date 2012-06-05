@@ -1,0 +1,2 @@
+usr/sbin var/lib/cfengine3/bin
+var/lib/cfengine3/log var/log/cfengine3

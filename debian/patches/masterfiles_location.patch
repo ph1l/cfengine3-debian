@@ -1,0 +1,48 @@
+Index: cfengine3/src/bootstrap.c
+===================================================================
+--- cfengine3.orig/src/bootstrap.c	2012-05-31 11:18:15.546107853 -0500
++++ cfengine3/src/bootstrap.c	2012-05-31 11:22:06.718679603 -0500
+@@ -233,7 +233,7 @@
+ 
+ // Get the timestamp on policy update
+ 
+-    snprintf(file, CF_MAXVARSIZE, "%s/masterfiles/cf_promises_validated", CFWORKDIR);
++    snprintf(file, CF_MAXVARSIZE, "%s/cf_promises_validated", CFMASTERDIR);
+     MapName(file);
+ 
+     struct stat sb;
+Index: cfengine3/src/cf3.defs.h
+===================================================================
+--- cfengine3.orig/src/cf3.defs.h	2012-05-31 11:18:15.550107937 -0500
++++ cfengine3/src/cf3.defs.h	2012-05-31 11:22:06.718679603 -0500
+@@ -48,6 +48,8 @@
+ 
+ #define CF3COPYRIGHT "Copyright (C) CFEngine AS 2008,2010-"
+ 
++#define CFMASTERDIR "/var/cfengine/masterfiles"
++
+ #define CF_SCALAR 's'
+ #define CF_LIST   'l'
+ #define CF_FNCALL 'f'
+Index: cfengine3/src/generic_agent.c
+===================================================================
+--- cfengine3.orig/src/generic_agent.c	2012-05-31 11:18:15.566108245 -0500
++++ cfengine3/src/generic_agent.c	2012-05-31 11:22:06.722679686 -0500
+@@ -333,7 +333,7 @@
+             }
+             else
+             {
+-                snprintf(filename, CF_MAXVARSIZE, "%s/masterfiles/cf_promises_validated", CFWORKDIR);
++                snprintf(filename, CF_MAXVARSIZE, "%s/cf_promises_validated", CFMASTERDIR);
+                 MapName(filename);
+             }
+ 
+@@ -698,7 +698,7 @@
+     }
+     else
+     {
+-        snprintf(filename, CF_MAXVARSIZE, "%s/masterfiles/cf_promises_validated", CFWORKDIR);
++        snprintf(filename, CF_MAXVARSIZE, "%s/cf_promises_validated", CFMASTERDIR);
+         MapName(filename);
+     }
+ 

@@ -1,0 +1,4 @@
+debianize-example-masterfiles.patch
+masterfiles_location.patch
+fhs-compliance.patch
+626647-kfreebsd-support.patch

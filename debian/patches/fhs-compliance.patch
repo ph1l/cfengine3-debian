@@ -1,0 +1,83 @@
+Index: cfengine3/src/cf-agent.c
+===================================================================
+--- cfengine3.orig/src/cf-agent.c	2012-05-31 11:18:15.546107853 -0500
++++ cfengine3/src/cf-agent.c	2012-05-31 11:22:16.834879664 -0500
+@@ -345,7 +345,7 @@
+   status which we need for setting returns
+ */
+ 
+-    snprintf(filename, CF_BUFSIZE, "%s/cfagent.%s.log", CFWORKDIR, VSYSNAME.nodename);
++    snprintf(filename, CF_BUFSIZE, "%s/log/cfagent.%s.log", CFWORKDIR, VSYSNAME.nodename);
+     MapName(filename);
+ 
+     if ((fp = fopen(filename, "a")) != NULL)
+Index: cfengine3/src/files_interfaces.c
+===================================================================
+--- cfengine3.orig/src/files_interfaces.c	2012-05-31 11:18:15.562108173 -0500
++++ cfengine3/src/files_interfaces.c	2012-05-31 11:22:16.834879664 -0500
+@@ -1354,7 +1354,7 @@
+     b.edits.backup = cfa_nobackup;
+     b.edits.maxfilesize = 1000000;
+ 
+-    snprintf(filename, CF_BUFSIZE, "%s/cfagent.%s.log", CFWORKDIR, VSYSNAME.nodename);
++    snprintf(filename, CF_BUFSIZE, "%s/log/cfagent.%s.log", CFWORKDIR, VSYSNAME.nodename);
+     MapName(filename);
+ 
+     if (!LoadFileAsItemList(&VSETUIDLIST, filename, b, pp))
+@@ -1374,7 +1374,7 @@
+     b.edits.backup = cfa_nobackup;
+     b.edits.maxfilesize = 1000000;
+ 
+-    snprintf(filename, CF_BUFSIZE, "%s/cfagent.%s.log", CFWORKDIR, VSYSNAME.nodename);
++    snprintf(filename, CF_BUFSIZE, "%s/log/cfagent.%s.log", CFWORKDIR, VSYSNAME.nodename);
+     MapName(filename);
+ 
+     PurgeItemList(&VSETUIDLIST, "SETUID/SETGID");
+Index: cfengine3/src/generic_agent.c
+===================================================================
+--- cfengine3.orig/src/generic_agent.c	2012-05-31 11:22:06.722679686 -0500
++++ cfengine3/src/generic_agent.c	2012-05-31 11:22:16.838879747 -0500
+@@ -516,6 +516,8 @@
+         MakeParentDirectory(vbuff, force);
+         snprintf(vbuff, CF_BUFSIZE, "%s%coutputs%cspooled_reports", CFWORKDIR, FILE_SEPARATOR, FILE_SEPARATOR);
+         MakeParentDirectory(vbuff, force);
++        snprintf(vbuff, CF_BUFSIZE, "%s%clog%c.tmp", CFWORKDIR, FILE_SEPARATOR, FILE_SEPARATOR);
++        MakeParentDirectory(vbuff, force);
+         snprintf(vbuff, CF_BUFSIZE, "%s%clastseen%cintermittencies", CFWORKDIR, FILE_SEPARATOR, FILE_SEPARATOR);
+         MakeParentDirectory(vbuff, force);
+         snprintf(vbuff, CF_BUFSIZE, "%s%creports%cvarious", CFWORKDIR, FILE_SEPARATOR, FILE_SEPARATOR);
+@@ -1833,7 +1835,7 @@
+ {
+     FILE *fp;
+ 
+-    snprintf(PIDFILE, CF_BUFSIZE - 1, "%s%c%s", CFWORKDIR, FILE_SEPARATOR, filename);
++    snprintf(PIDFILE, CF_BUFSIZE - 1, "/var/run/%s", filename);
+ 
+     if ((fp = fopen(PIDFILE, "w")) == NULL)
+     {
+Index: cfengine3/src/transaction.c
+===================================================================
+--- cfengine3.orig/src/transaction.c	2012-05-31 11:18:15.574108410 -0500
++++ cfengine3/src/transaction.c	2012-05-31 11:22:16.838879747 -0500
+@@ -179,7 +179,7 @@
+         sum = (CF_MACROALPHABET * sum + cc_operand[i]) % CF_HASHTABLESIZE;
+     }
+ 
+-    snprintf(cflog, CF_BUFSIZE, "%s/cf3.%.40s.runlog", CFWORKDIR, host);
++    snprintf(cflog, CF_BUFSIZE, "%s/log/cf3.%.40s.runlog", CFWORKDIR, host);
+     snprintf(cflock, CF_BUFSIZE, "lock.%.100s.%s.%.100s_%d_%s", pp->bundle, cc_operator, cc_operand, sum, str_digest);
+     snprintf(cflast, CF_BUFSIZE, "last.%.100s.%s.%.100s_%d_%s", pp->bundle, cc_operator, cc_operand, sum, str_digest);
+ 
+Index: cfengine3/src/logging.c
+===================================================================
+--- cfengine3.orig/src/logging.c	2012-05-31 11:18:15.566108245 -0500
++++ cfengine3/src/logging.c	2012-05-31 11:22:16.838879747 -0500
+@@ -469,7 +469,7 @@
+         return;
+     }
+ 
+-    snprintf(filename, CF_BUFSIZE, "%s/%s", CFWORKDIR, CF_PROMISE_LOG);
++    snprintf(filename, CF_BUFSIZE, "%s/log/%s", CFWORKDIR, CF_PROMISE_LOG);
+     MapName(filename);
+ 
+     if ((fout = fopen(filename, "a")) == NULL)

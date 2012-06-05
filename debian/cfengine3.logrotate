@@ -1,0 +1,10 @@
+/var/lib/cfengine3/log/*log {
+	weekly
+	missingok
+	rotate 52
+	compress
+	delaycompress
+	notifempty
+	create 600 root root
+}
+		
