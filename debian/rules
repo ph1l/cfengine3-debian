@@ -19,6 +19,10 @@ override_dh_auto_build:
 	dh_auto_build
 	make -C docs html-recursive
 
+### To build faster, skip the testsuite:
+# override_dh_auto_test:
+#	@echo skipping tests
+#
 override_dh_clean:
 	dh_autoreconf_clean
 	dh_clean
