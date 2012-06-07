@@ -15,6 +15,10 @@ override_dh_auto_configure:
 				--with-workdir=/var/lib/cfengine3 \
 				CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
 
+override_dh_auto_build:
+	dh_auto_build
+	make -C docs html-recursive
+
 override_dh_clean:
 	dh_autoreconf_clean
 	dh_clean
@@ -28,5 +32,5 @@ override_dh_strip:
 	dh_strip --dbg-package=cfengine3-dbg
 
 override_dh_installchangelogs:
-	rm debian/cfengine3/usr/share/doc/cfengine3/ChangeLog
+	rm debian/cfengine3-doc/usr/share/doc/cfengine3/ChangeLog
 	dh_installchangelogs

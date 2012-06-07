@@ -34,3 +34,17 @@ Description: debugging symbols for cfengine3
  on a network should be configured.
  .
  This package contains the debugging symbols for cfengine3.
+
+Package: cfengine3-doc
+Architecture: all
+Depends: 
+Description: tool for configuring and maintaining network machines
+ Cfengine is a suite of programs for integrated autonomic management 
+ of either individual or networked computers.
+ .
+ Cfengine 3 is both a more powerful and much simplified version of cfengine, 
+ which has been designed to inter operate with cfengine 2 rather than be 
+ backwards compatible with it.
+ .
+ With cfengine 3 you can install, configure and maintain computers using 
+ powerful hands-free tools.

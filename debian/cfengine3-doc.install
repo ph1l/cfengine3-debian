@@ -1,0 +1,5 @@
+debian/tmp/usr/share/doc/cfengine/* usr/share/doc/cfengine3/
+docs/reference/*.html usr/share/doc/cfengine3/html/reference
+docs/reference/*.png usr/share/doc/cfengine3/html/reference
+docs/guides/*.html usr/share/doc/cfengine3/html/guides
+docs/guides/*.png usr/share/doc/cfengine3/html/guides
