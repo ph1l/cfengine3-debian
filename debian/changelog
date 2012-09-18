@@ -1,3 +1,11 @@
+cfengine3 (3.3.7-1~bpo50+1) lenny-backports; urgency=low
+
+  [ Philip J Freeman ]
+  * update changelog
+  * backport to Lenny
+
+ -- Philip J Freeman <philip.freeman@gmail.com>  Tue, 18 Sep 2012 18:27:44 -0500
+
 cfengine3 (3.3.7-1) unstable; urgency=low
 
   [ Mikhail Gusarov ]
