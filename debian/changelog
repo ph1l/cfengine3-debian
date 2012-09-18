@@ -1,3 +1,59 @@
+cfengine3 (3.3.7-1) unstable; urgency=low
+
+  [ Mikhail Gusarov ]
+  * Post-release version bump
+  * Properly set sys.domain variable in case hostname is fully-qualified
+
+  [ Geir Nygård ]
+  * install/upgrade procedure, add configurable MP frontpage, rename
+    engineering to status and reports
+  * added images
+
+  [ Volker Hilsheimer ]
+  * Pre-release version bump.
+  * Post-(Enterprise 2.2.2)-Release version bump.
+
+  [ Mikhail Gusarov ]
+  * Make both DeleteAllScopes and DeleteScope use HashFree for symmetry
+
+  [ Eystein Måløy Stenberg ]
+  * Remove leak in cf-monitord SetClasses - could be 400 kb/hour
+  * Remove memory leak. Around 5 kb/hr for cf-monitord, probably
+    affecting other daemons too.
+  * Removed significant memory leak when rereading policy
+
+  [ Volker Hilsheimer ]
+  * Pre-release version bump.
+  * Post-release version bump.
+
+  [ Geir Nygård ]
+  * installation order matters. add troubleshooting for unable to
+    connect to MP
+  * remove paragraph on LDAP directory structure limitations
+
+  [ Eystein Måløy Stenberg ]
+  * Revert "Remove leak in cf-monitord SetClasses - could be 400
+    kb/hour"
+
+  [ Volker Hilsheimer ]
+  * Pre-release version bump.
+  * Post-release version bump.
+
+  [ Maciej Patucha ]
+  * Use timeout promise for cf-runagent both for connection timeout and
+    recv timeout.
+  * Post-release version bump.
+
+  [ Mikhail Gusarov ]
+  * Adjust network timeout in order to match default behaviour in
+    previous version
+  * Unbump the release version in order to move tags
+  * Pre-release version bump
+
+  [ Philip J Freeman ]
+
+ -- Philip J Freeman <philip.freeman@gmail.com>  Tue, 18 Sep 2012 18:02:44 -0500
+
 cfengine3 (3.3.5-1) unstable; urgency=low
 
   * New upstream:
