@@ -18,7 +18,8 @@ dnl
 dnl The version in the next line is the only one to set
 dnl
 
-AM_INIT_AUTOMAKE(cfengine, 3.3.7)
+_AM_SET_OPTION([tar-ustar])
+AM_INIT_AUTOMAKE(cfengine, 3.3.9)
 AM_MAINTAINER_MODE([enable])
 
 AC_DEFINE(BUILD_YEAR, esyscmd([date +%Y | tr -d '\n']), "Software build year")
@@ -455,6 +456,20 @@ AC_REPLACE_FUNCS(strncasecmp)
 AC_CHECK_FUNCS(getpwent setpwent endpwent)
 
 AC_CHECK_FUNCS(getcwd getnetgrent waitpid seteuid setegid setreuid setregid)
+
+AC_CHECK_DECLS(mkdtemp)
+AC_CHECK_FUNCS(mkdtemp)
+
+AC_CHECK_DECLS(setnetgrent, [], [], [[#include <netdb.h>]])
+AC_CHECK_FUNCS(setnetgrent)
+AC_COMPILE_IFELSE(AC_LANG_PROGRAM([[#include <netdb.h>]],
+                                   [extern int setnetgrent(const char *)]),
+  [AC_DEFINE([SETNETGRENT_RETURNS_INT], 1, [Whether setnetgrent returns int])],
+  [AC_DEFINE([SETNETGRENT_RETURNS_INT], 0, [Whether setnetgrent returns int])])
+
+AC_CHECK_DECLS(strrstr)
+AC_CHECK_FUNCS(strrstr)
+
 AC_CHECK_FUNCS(uname gethostname chflags)
 AC_CHECK_FUNCS(putenv)
 AC_CHECK_FUNCS(mkfifo statfs statvfs door)
