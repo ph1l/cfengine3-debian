@@ -1,3 +1,37 @@
+cfengine3 (3.3.9-1) unstable; urgency=low
+
+  [ Mikhail Gusarov ]
+  * Post-release version bump
+  * Update ChangeLog
+  * De-hardcode /tmp as a temporary directory for db_test
+  * Add detection of setnetgrent(3) return type
+  * Acceptance test names are long, use extended tar format
+  * Pre-release version bump
+  * Post-release version bump
+
+  [ Sigurd ]
+  * Ensure no NaN or infinity real values get into JSON
+
+  [ Maciej Patucha ]
+  * Prevent cf-serverd from loosing hard classes when reloading
+    policies.
+
+  [ Mikhail Gusarov ]
+  * Split setting timeout on fd into separate function
+  * Implement receive network timeout on server-side
+
+  [ Bishwa Shrestha ]
+  * Fix: Protect against segfault while printing a time_t variable.
+    Detected in NetBSD6 RC2(32-bit)
+
+  [ Mikhail Gusarov ]
+  * Update ChangeLog
+  * Pre-release version bump
+
+  [ Philip J Freeman ]
+
+ -- Philip J Freeman <philip.freeman@gmail.com>  Tue, 06 Nov 2012 16:03:33 -0600
+
 cfengine3 (3.3.7-1) unstable; urgency=low
 
   [ Mikhail Gusarov ]
